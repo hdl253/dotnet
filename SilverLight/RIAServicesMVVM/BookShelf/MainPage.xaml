@@ -1,0 +1,53 @@
+﻿<UserControl 
+  x:Class="BookShelf.MainPage"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
+  xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
+
+  <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
+
+    <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
+            <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" 
+                              Source="/BookView" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed" Margin="0,90,0,0">
+                <navigation:Frame.UriMapper>
+                  <uriMapper:UriMapper>
+                        <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
+                  </uriMapper:UriMapper>
+                </navigation:Frame.UriMapper>
+            </navigation:Frame>
+    </Border>
+        <Border x:Name="LinksBorder" Style="{StaticResource LinksBorderStyle}">
+        </Border>
+
+        <Grid Style="{StaticResource NavigationOuterGridStyle}">
+      <Grid x:Name="NavigationGrid" Style="{StaticResource NavigationGridStyle}">
+
+        <Border x:Name="BrandingBorder" Style="{StaticResource BrandingBorderStyle}" Margin="0,0,10,0">
+          <StackPanel x:Name="BrandingStackPanel" Style="{StaticResource BrandingStackPanelStyle}">
+            <ContentControl Style="{StaticResource LogoIcon}"/>
+            <TextBlock x:Name="ApplicationNameTextBlock" Style="{StaticResource ApplicationNameStyle}" Text="BOOK CLUB" Height="62" Margin="43,-16,0,0" VerticalAlignment="Stretch" />
+        	<StackPanel Orientation="Horizontal">
+        			<HyperlinkButton TargetName="ContentFrame" NavigateUri="/BookView" Content="Books" Style="{StaticResource LinkStyle}"/>
+            		<Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"/>
+        			<HyperlinkButton TargetName="ContentFrame" NavigateUri="/CheckoutView" Content="Checkouts" Style="{StaticResource LinkStyle}"/>
+            		<Rectangle x:Name="Divider2" Style="{StaticResource DividerStyle}"/>
+        			<HyperlinkButton TargetName="ContentFrame" NavigateUri="/About" Content="About" Style="{StaticResource LinkStyle}" IsEnabled="false"/>
+        	</StackPanel>
+          </StackPanel>
+        </Border>
+
+   
+
+      </Grid>
+
+      <Border x:Name="loginContainer" Style="{StaticResource LoginContainerStyle}" >
+          <!-- LoginStatus will be added here in code behind. This is required for the designer view to work -->           
+      </Border>
+    </Grid>
+
+  </Grid>
+
+</UserControl>

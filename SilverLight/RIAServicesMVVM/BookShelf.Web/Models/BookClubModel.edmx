@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BookClubModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="BookClubModelStoreContainer">
+          <EntitySet Name="BookOfDay" EntityType="BookClubModel.Store.BookOfDay" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Books" EntityType="BookClubModel.Store.Books" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Categories" EntityType="BookClubModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Checkouts" EntityType="BookClubModel.Store.Checkouts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Members" EntityType="BookClubModel.Store.Members" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Requests" EntityType="BookClubModel.Store.Requests" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_BookOfDay_Books" Association="BookClubModel.Store.FK_BookOfDay_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BookOfDay" EntitySet="BookOfDay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Books_Categories" Association="BookClubModel.Store.FK_Books_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Books_Members" Association="BookClubModel.Store.FK_Books_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checkouts_Books" Association="BookClubModel.Store.FK_Checkouts_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Checkouts" EntitySet="Checkouts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checkouts_Members" Association="BookClubModel.Store.FK_Checkouts_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Checkouts" EntitySet="Checkouts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Books" Association="BookClubModel.Store.FK_Requests_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Checkouts" Association="BookClubModel.Store.FK_Requests_Checkouts">
+            <End Role="Checkouts" EntitySet="Checkouts" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Members" Association="BookClubModel.Store.FK_Requests_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BookOfDay">
+          <Key>
+            <PropertyRef Name="Day" />
+          </Key>
+          <Property Name="Day" Type="date" Nullable="false" />
+          <Property Name="BookID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="ASIN" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Author" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PublishDate" Type="date" Nullable="false" />
+          <Property Name="AddedDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Checkouts">
+          <Key>
+            <PropertyRef Name="CheckoutID" />
+          </Key>
+          <Property Name="CheckoutID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BookID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="CheckoutDate" Type="date" Nullable="false" />
+          <Property Name="Returned" Type="bit" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MemberName" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="MemberAlias" Type="nvarchar" Nullable="false" MaxLength="8" />
+          <Property Name="MemberOffice" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="JoinDate" Type="date" Nullable="false" />
+          <Property Name="LoginDate" Type="date" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BookID" Type="int" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="RequestDate" Type="date" Nullable="false" />
+          <Property Name="CheckoutID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BookOfDay_Books">
+          <End Role="Books" Type="BookClubModel.Store.Books" Multiplicity="1" />
+          <End Role="BookOfDay" Type="BookClubModel.Store.BookOfDay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BookOfDay">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Books_Categories">
+          <End Role="Categories" Type="BookClubModel.Store.Categories" Multiplicity="1" />
+          <End Role="Books" Type="BookClubModel.Store.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Books_Members">
+          <End Role="Members" Type="BookClubModel.Store.Members" Multiplicity="1" />
+          <End Role="Books" Type="BookClubModel.Store.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Checkouts_Books">
+          <End Role="Books" Type="BookClubModel.Store.Books" Multiplicity="1" />
+          <End Role="Checkouts" Type="BookClubModel.Store.Checkouts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Checkouts">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Checkouts_Members">
+          <End Role="Members" Type="BookClubModel.Store.Members" Multiplicity="1" />
+          <End Role="Checkouts" Type="BookClubModel.Store.Checkouts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Checkouts">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Books">
+          <End Role="Books" Type="BookClubModel.Store.Books" Multiplicity="1" />
+          <End Role="Requests" Type="BookClubModel.Store.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Checkouts">
+          <End Role="Checkouts" Type="BookClubModel.Store.Checkouts" Multiplicity="1" />
+          <End Role="Requests" Type="BookClubModel.Store.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Checkouts">
+              <PropertyRef Name="CheckoutID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="CheckoutID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Members">
+          <End Role="Members" Type="BookClubModel.Store.Members" Multiplicity="1" />
+          <End Role="Requests" Type="BookClubModel.Store.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BookClubModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="BookClubEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BookOfDays" EntityType="BookClubModel.BookOfDay" />
+          <EntitySet Name="Books" EntityType="BookClubModel.Book" />
+          <EntitySet Name="Categories" EntityType="BookClubModel.Category" />
+          <EntitySet Name="Checkouts" EntityType="BookClubModel.Checkout" />
+          <EntitySet Name="Members" EntityType="BookClubModel.Member" />
+          <EntitySet Name="Requests" EntityType="BookClubModel.Request" />
+          <AssociationSet Name="FK_BookOfDay_Books" Association="BookClubModel.FK_BookOfDay_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="BookOfDay" EntitySet="BookOfDays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Books_Categories" Association="BookClubModel.FK_Books_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Books_Members" Association="BookClubModel.FK_Books_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checkouts_Books" Association="BookClubModel.FK_Checkouts_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Checkouts" EntitySet="Checkouts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Books" Association="BookClubModel.FK_Requests_Books">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Checkouts_Members" Association="BookClubModel.FK_Checkouts_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Checkouts" EntitySet="Checkouts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Checkouts" Association="BookClubModel.FK_Requests_Checkouts">
+            <End Role="Checkouts" EntitySet="Checkouts" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requests_Members" Association="BookClubModel.FK_Requests_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BookOfDay">
+          <Key>
+            <PropertyRef Name="Day" />
+          </Key>
+          <Property Name="Day" Type="DateTime" Nullable="false" />
+          <Property Name="BookID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="BookClubModel.FK_BookOfDay_Books" FromRole="BookOfDay" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="ASIN" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Author" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PublishDate" Type="DateTime" Nullable="false" />
+          <Property Name="AddedDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="BookOfDays" Relationship="BookClubModel.FK_BookOfDay_Books" FromRole="Books" ToRole="BookOfDay" />
+          <NavigationProperty Name="Category" Relationship="BookClubModel.FK_Books_Categories" FromRole="Books" ToRole="Categories" />
+          <NavigationProperty Name="Member" Relationship="BookClubModel.FK_Books_Members" FromRole="Books" ToRole="Members" />
+          <NavigationProperty Name="Checkouts" Relationship="BookClubModel.FK_Checkouts_Books" FromRole="Books" ToRole="Checkouts" />
+          <NavigationProperty Name="Requests" Relationship="BookClubModel.FK_Requests_Books" FromRole="Books" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Books" Relationship="BookClubModel.FK_Books_Categories" FromRole="Categories" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="Checkout">
+          <Key>
+            <PropertyRef Name="CheckoutID" />
+          </Key>
+          <Property Name="CheckoutID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="CheckoutDate" Type="DateTime" Nullable="false" />
+          <Property Name="Returned" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="BookClubModel.FK_Checkouts_Books" FromRole="Checkouts" ToRole="Books" />
+          <NavigationProperty Name="Member" Relationship="BookClubModel.FK_Checkouts_Members" FromRole="Checkouts" ToRole="Members" />
+          <NavigationProperty Name="Requests" Relationship="BookClubModel.FK_Requests_Checkouts" FromRole="Checkouts" ToRole="Requests" />
+          <Property Type="String" Name="Notes" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberName" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="MemberAlias" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="MemberOffice" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="JoinDate" Type="DateTime" Nullable="false" />
+          <Property Name="LoginDate" Type="DateTime" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Books" Relationship="BookClubModel.FK_Books_Members" FromRole="Members" ToRole="Books" />
+          <NavigationProperty Name="Checkouts" Relationship="BookClubModel.FK_Checkouts_Members" FromRole="Members" ToRole="Checkouts" />
+          <NavigationProperty Name="Requests" Relationship="BookClubModel.FK_Requests_Members" FromRole="Members" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookID" Type="Int32" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="RequestDate" Type="DateTime" Nullable="false" />
+          <Property Name="CheckoutID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="BookClubModel.FK_Requests_Books" FromRole="Requests" ToRole="Books" />
+          <NavigationProperty Name="Checkout" Relationship="BookClubModel.FK_Requests_Checkouts" FromRole="Requests" ToRole="Checkouts" />
+          <NavigationProperty Name="Member" Relationship="BookClubModel.FK_Requests_Members" FromRole="Requests" ToRole="Members" />
+        </EntityType>
+        <Association Name="FK_BookOfDay_Books">
+          <End Role="Books" Type="BookClubModel.Book" Multiplicity="1" />
+          <End Role="BookOfDay" Type="BookClubModel.BookOfDay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BookOfDay">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Books_Categories">
+          <End Role="Categories" Type="BookClubModel.Category" Multiplicity="1" />
+          <End Role="Books" Type="BookClubModel.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Books_Members">
+          <End Role="Members" Type="BookClubModel.Member" Multiplicity="1" />
+          <End Role="Books" Type="BookClubModel.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Checkouts_Books">
+          <End Role="Books" Type="BookClubModel.Book" Multiplicity="1" />
+          <End Role="Checkouts" Type="BookClubModel.Checkout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Checkouts">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Books">
+          <End Role="Books" Type="BookClubModel.Book" Multiplicity="1" />
+          <End Role="Requests" Type="BookClubModel.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Checkouts_Members">
+          <End Role="Members" Type="BookClubModel.Member" Multiplicity="1" />
+          <End Role="Checkouts" Type="BookClubModel.Checkout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Checkouts">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Checkouts">
+          <End Role="Checkouts" Type="BookClubModel.Checkout" Multiplicity="1" />
+          <End Role="Requests" Type="BookClubModel.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Checkouts">
+              <PropertyRef Name="CheckoutID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="CheckoutID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Members">
+          <End Role="Members" Type="BookClubModel.Member" Multiplicity="1" />
+          <End Role="Requests" Type="BookClubModel.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BookClubModelStoreContainer" CdmEntityContainer="BookClubEntities">
+          <EntitySetMapping Name="BookOfDays"><EntityTypeMapping TypeName="BookClubModel.BookOfDay"><MappingFragment StoreEntitySet="BookOfDay">
+            <ScalarProperty Name="Day" ColumnName="Day" />
+            <ScalarProperty Name="BookID" ColumnName="BookID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Books"><EntityTypeMapping TypeName="BookClubModel.Book"><MappingFragment StoreEntitySet="Books">
+            <ScalarProperty Name="BookID" ColumnName="BookID" />
+            <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+            <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+            <ScalarProperty Name="ASIN" ColumnName="ASIN" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="Author" ColumnName="Author" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+            <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Categories"><EntityTypeMapping TypeName="BookClubModel.Category"><MappingFragment StoreEntitySet="Categories">
+            <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+            <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Checkouts"><EntityTypeMapping TypeName="BookClubModel.Checkout"><MappingFragment StoreEntitySet="Checkouts">
+            <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CheckoutID" ColumnName="CheckoutID" />
+            <ScalarProperty Name="BookID" ColumnName="BookID" />
+            <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+            <ScalarProperty Name="CheckoutDate" ColumnName="CheckoutDate" />
+            <ScalarProperty Name="Returned" ColumnName="Returned" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Members"><EntityTypeMapping TypeName="BookClubModel.Member"><MappingFragment StoreEntitySet="Members">
+            <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+            <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+            <ScalarProperty Name="MemberAlias" ColumnName="MemberAlias" />
+            <ScalarProperty Name="MemberOffice" ColumnName="MemberOffice" />
+            <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+            <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Requests"><EntityTypeMapping TypeName="BookClubModel.Request"><MappingFragment StoreEntitySet="Requests">
+            <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+            <ScalarProperty Name="BookID" ColumnName="BookID" />
+            <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+            <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+            <ScalarProperty Name="CheckoutID" ColumnName="CheckoutID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="BookClubModel">
+        <EntityTypeShape EntityType="BookClubModel.BookOfDay" Width="1.5" PointX="3" PointY="3" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookClubModel.Book" Width="1.5" PointX="5.375" PointY="3" Height="3.7109993489583322" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookClubModel.Category" Width="1.5" PointX="8" PointY="3" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookClubModel.Checkout" Width="1.5" PointX="7.875" PointY="6.875" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookClubModel.Member" Width="1.5" PointX="5.375" PointY="7.125" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookClubModel.Request" Width="1.5" PointX="2.875" PointY="6.875" Height="2.5571907552083313" IsExpanded="true" />
+        <AssociationConnector Association="BookClubModel.FK_BookOfDay_Books" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.375" PointY="3.797841796875" />
+          <ConnectorPoint PointX="4.5" PointY="3.797841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="BookClubModel.FK_Books_Categories" ManuallyRouted="false">
+          <ConnectorPoint PointX="8" PointY="3.797841796875" />
+          <ConnectorPoint PointX="6.875" PointY="3.797841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="BookClubModel.FK_Books_Members" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.125" PointY="7.125" />
+          <ConnectorPoint PointX="6.125" PointY="6.7109993489583317" />
+        </AssociationConnector>
+        <AssociationConnector Association="BookClubModel.FK_Checkouts_Books" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.875" PointY="5.6845914713541656" />
+          <ConnectorPoint PointX="9.28125" PointY="5.6845914713541656" />
+          <ConnectorPoint PointX="9.28125" PointY="6.875" />
+        </AssociationConnector>
+        <AssociationConnector Association="BookClubModel.FK_Requests_Books" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.375" PointY="5.6845914713541656" />
+          <ConnectorPoint PointX="2.96875" PointY="5.6845914713541656" />
+          <ConnectorPoint PointX="2.96875" PointY="6.875" />
+        </AssociationConnector>
+        <AssociationConnector Association="BookClubModel.FK_Checkouts_Members" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.875" PointY="8.2785953776041659" />
+          <ConnectorPoint PointX="7.875" PointY="8.2785953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="BookClubModel.FK_Requests_Checkouts" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.875" PointY="6.96875" />
+          <ConnectorPoint PointX="6.208333333333333" PointY="6.9687499999999991" />
+          <ConnectorPoint PointX="6.041666666666667" PointY="6.96875" />
+          <ConnectorPoint PointX="4.375" PointY="6.96875" />
+        </AssociationConnector>
+        <AssociationConnector Association="BookClubModel.FK_Requests_Members" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.375" PointY="8.2785953776041659" />
+          <ConnectorPoint PointX="4.375" PointY="8.2785953776041659" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

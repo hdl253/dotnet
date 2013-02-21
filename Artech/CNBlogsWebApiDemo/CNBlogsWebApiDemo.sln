@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiDemo", "WebApiDemo\WebApiDemo.csproj", "{D27C8400-C048-42B0-B010-FC2704A2B57E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiTest", "WebApiTest\WebApiTest.csproj", "{D0A9CD51-CDA2-44F0-9B6F-4936259372E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D27C8400-C048-42B0-B010-FC2704A2B57E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D27C8400-C048-42B0-B010-FC2704A2B57E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D27C8400-C048-42B0-B010-FC2704A2B57E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D27C8400-C048-42B0-B010-FC2704A2B57E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A9CD51-CDA2-44F0-9B6F-4936259372E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A9CD51-CDA2-44F0-9B6F-4936259372E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A9CD51-CDA2-44F0-9B6F-4936259372E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A9CD51-CDA2-44F0-9B6F-4936259372E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

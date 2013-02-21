@@ -1,0 +1,92 @@
+﻿<navigation:Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    mc:Ignorable="d" 
+    xmlns:input="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Input" 
+    x:Class="BookShelf.CheckoutView"
+    d:DesignWidth="931" d:DesignHeight="480"
+    Title="CheckoutView"
+	TextOptions.TextHintingMode="Animated" 
+    DataContext="{Binding Checkout, Source={StaticResource Locator}}"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+    xmlns:my2="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.SL4">
+    <navigation:Page.Resources>
+        <DataTemplate x:Key="CheckoutItemTemplate">
+        	<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+        		<TextBlock Text="{Binding Book.Title}" Margin="4,0,4,0"/>
+                <TextBlock Text="{Binding CheckoutDate, StringFormat=\{0:d\}}" Margin="4,0,0,0"/>
+			</StackPanel>
+        </DataTemplate>
+        <Style TargetType="TextBlock" x:Key="TitleStyle">
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="{StaticResource HighlightDarkColor}" />
+
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="9"/>
+        </Style>
+
+    </navigation:Page.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="White"  >
+        <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
+
+            <Grid x:Name="ContentGrid"  HorizontalAlignment="Center" Height="438">
+            	<Grid.RowDefinitions>
+            		<RowDefinition Height="36"/>
+            		<RowDefinition Height="47"/>
+            		<RowDefinition/>
+            		<RowDefinition Height="45"/>
+            	</Grid.RowDefinitions>
+            	<Grid.ColumnDefinitions>
+            		<ColumnDefinition Width="400" />
+            		<ColumnDefinition />
+            	</Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}"
+    			Text="BOOK CHECKOUTS" Margin="0,10,0,-3" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" d:LayoutOverrides="Height"/>
+                <ScrollViewer BorderThickness="0" HorizontalAlignment="Left" Grid.RowSpan="1" Width="398" Grid.Column="1" Grid.Row="2" Margin="4">
+                    <Grid x:Name="BookPanel" Background="White" >
+                        <StackPanel >
+                            <Grid DataContext="{Binding SelectedCheckout}" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" >
+                                    <Image x:Name="imgSmall" Source="{Binding Book.ImageSource}" HorizontalAlignment="Left" Height="100" Margin="5,5,0,0" VerticalAlignment="Top" Width="100"/>
+                                    <StackPanel  Margin="2,2,2,2" >
+                                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Width="225" Text="{Binding Book.Title}" VerticalAlignment="Top" FontSize="13.333" FontWeight="Bold" d:LayoutOverrides="HorizontalAlignment" FontFamily="Segoe UI" />
+                                        <TextBlock Text="{Binding Book.Author}" VerticalAlignment="Top" Height="23" FontFamily="Segoe UI" FontSize="13.333"/>
+                                        <TextBlock Text="{Binding Book.ASIN, StringFormat=Amazon Item # \{0\}}" VerticalAlignment="Top" Height="23" FontFamily="Segoe UI" FontSize="13.333"/>
+                                        <TextBlock Text="{Binding Book.PublishDate, StringFormat=Publish Date \{0:d\}}" VerticalAlignment="Top" Height="23" FontFamily="Segoe UI" FontSize="13.333"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <TextBlock Grid.Row="1" Text="{Binding Path=CheckoutDate, StringFormat=Date Checked Out    \{0:d\}}" 
+                                           FontFamily="Segoe UI" FontSize="13.333" Height="Auto" Margin="0,0,0,12"/>
+                                <TextBlock Grid.Row="2" TextWrapping="Wrap" Text="{Binding Book.Description}" FontFamily="Segoe UI" FontSize="13.333" Height="Auto" />
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+                <TextBlock FontFamily="Segoe UI" FontSize="13.333" Margin="4" Style="{StaticResource TitleStyle}" Text="BOOK CHECKOUTS" TextWrapping="Wrap" Grid.Row="1" VerticalAlignment="Bottom" />
+                <TextBlock FontFamily="Segoe UI" FontSize="13.333" Grid.ColumnSpan="1" Margin="4" Style="{StaticResource TitleStyle}" Text="CHECKOUT DETAILS" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1" />
+                <ListBox 
+						ItemTemplate="{StaticResource CheckoutItemTemplate}" 
+						ItemsSource="{Binding Checkouts}" 
+						x:Name="checkoutListBox" 
+						SelectedItem="{Binding SelectedCheckout, Mode=TwoWay}" 
+						Grid.Row="2" 
+						HorizontalAlignment="Left" 
+						HorizontalContentAlignment="Left"/>
+            </Grid>
+
+        </ScrollViewer>
+    </Grid>
+
+</navigation:Page>

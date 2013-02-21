@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShelf", "BookShelf\BookShelf.csproj", "{C3BAF0E5-8580-4724-8ED0-8FB3016A33FF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F3E1544E-DB6E-43B4-A7C2-885B4407C396} = {F3E1544E-DB6E-43B4-A7C2-885B4407C396}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookShelf.Web", "BookShelf.Web\BookShelf.Web.csproj", "{F3E1544E-DB6E-43B4-A7C2-885B4407C396}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{D7775C42-7A79-4720-AB58-2187ED852EAD}"
+	ProjectSection(SolutionItems) = preProject
+		Lib\GalaSoft.MvvmLight.Extras.SL4.dll = Lib\GalaSoft.MvvmLight.Extras.SL4.dll
+		Lib\GalaSoft.MvvmLight.SL4.dll = Lib\GalaSoft.MvvmLight.SL4.dll
+		Lib\System.Windows.Interactivity.dll = Lib\System.Windows.Interactivity.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Papa.Common", "Papa.Common\Papa.Common.csproj", "{3F8FA5EC-7386-4914-A709-4495BC2D15DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ria.Common", "Ria.Common\Ria.Common.csproj", "{3A2A8976-9F17-4D84-8379-0E0053A57D37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3BAF0E5-8580-4724-8ED0-8FB3016A33FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3BAF0E5-8580-4724-8ED0-8FB3016A33FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3BAF0E5-8580-4724-8ED0-8FB3016A33FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3BAF0E5-8580-4724-8ED0-8FB3016A33FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3E1544E-DB6E-43B4-A7C2-885B4407C396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3E1544E-DB6E-43B4-A7C2-885B4407C396}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3E1544E-DB6E-43B4-A7C2-885B4407C396}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3E1544E-DB6E-43B4-A7C2-885B4407C396}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F8FA5EC-7386-4914-A709-4495BC2D15DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F8FA5EC-7386-4914-A709-4495BC2D15DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F8FA5EC-7386-4914-A709-4495BC2D15DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F8FA5EC-7386-4914-A709-4495BC2D15DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A2A8976-9F17-4D84-8379-0E0053A57D37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A2A8976-9F17-4D84-8379-0E0053A57D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A2A8976-9F17-4D84-8379-0E0053A57D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A2A8976-9F17-4D84-8379-0E0053A57D37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

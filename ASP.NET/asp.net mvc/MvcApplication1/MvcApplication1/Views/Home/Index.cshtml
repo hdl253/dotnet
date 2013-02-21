@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>@ViewBag.Message</h2>
+<p>
+    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+</p>
+@Ajax.ActionLink("click here to see the latest reviews",
+                "LatestReviews",new AjaxOptions
+                                    {
+                                        UpdateTargetId="latestReviews",
+                                        InsertionMode= InsertionMode.InsertAfter,
+                                        HttpMethod="GET"
+                                    })
+
+<div id="latestReviews"></div>

@@ -1,0 +1,9 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:BookShelf" 
+    xmlns:Common="clr-namespace:Papa.Common;assembly=Papa.Common" 
+	>
+    <Common:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    <local:ViewModelLocator x:Key="Locator" />
+</ResourceDictionary>

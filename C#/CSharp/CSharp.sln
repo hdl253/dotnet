@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Syntax", "Syntax", "{5892FDC3-A7A0-4AEF-8998-A9B941818069}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Syntax", "Syntax\Syntax.csproj", "{332CFE30-AC68-489F-96D1-ABC945493735}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Algorithm", "Algorithm", "{C1B7D03C-9B33-4DFA-89C6-2F3532903390}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPUUsageCurve", "CPUUsageCurve\CPUUsageCurve.csproj", "{0B95ADE9-CB2C-4247-B791-22E873367F7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GC", "GC", "{A3AE6F6E-E43D-4D13-83A2-4F22D3F94443}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GarbageCollection", "GarbageCollection\GarbageCollection.csproj", "{DC7E657F-3112-45F6-BA23-987A7D589EAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{332CFE30-AC68-489F-96D1-ABC945493735}.Debug|x86.ActiveCfg = Debug|x86
+		{332CFE30-AC68-489F-96D1-ABC945493735}.Debug|x86.Build.0 = Debug|x86
+		{332CFE30-AC68-489F-96D1-ABC945493735}.Release|x86.ActiveCfg = Release|x86
+		{332CFE30-AC68-489F-96D1-ABC945493735}.Release|x86.Build.0 = Release|x86
+		{0B95ADE9-CB2C-4247-B791-22E873367F7C}.Debug|x86.ActiveCfg = Debug|x86
+		{0B95ADE9-CB2C-4247-B791-22E873367F7C}.Debug|x86.Build.0 = Debug|x86
+		{0B95ADE9-CB2C-4247-B791-22E873367F7C}.Release|x86.ActiveCfg = Release|x86
+		{0B95ADE9-CB2C-4247-B791-22E873367F7C}.Release|x86.Build.0 = Release|x86
+		{DC7E657F-3112-45F6-BA23-987A7D589EAA}.Debug|x86.ActiveCfg = Debug|x86
+		{DC7E657F-3112-45F6-BA23-987A7D589EAA}.Debug|x86.Build.0 = Debug|x86
+		{DC7E657F-3112-45F6-BA23-987A7D589EAA}.Release|x86.ActiveCfg = Release|x86
+		{DC7E657F-3112-45F6-BA23-987A7D589EAA}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{332CFE30-AC68-489F-96D1-ABC945493735} = {5892FDC3-A7A0-4AEF-8998-A9B941818069}
+		{0B95ADE9-CB2C-4247-B791-22E873367F7C} = {C1B7D03C-9B33-4DFA-89C6-2F3532903390}
+		{DC7E657F-3112-45F6-BA23-987A7D589EAA} = {A3AE6F6E-E43D-4D13-83A2-4F22D3F94443}
+	EndGlobalSection
+EndGlobal

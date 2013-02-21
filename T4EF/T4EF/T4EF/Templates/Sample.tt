@@ -1,0 +1,45 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+
+<#
+    foreach(var name in GetTableNames())
+    {
+#>
+    public class <#= name #>
+    {
+
+    }
+	
+	<# System.Diagnostics.Debugger.Launch();
+		System.Diagnostics.Debugger.Break();
+		#>
+<#
+    }
+#>
+
+<#+
+IEnumerable<string> GetTableNames()
+{
+    var connString = @"Data Source=.; Initial Catalog=MvcMusicStore; Integrated Security=True";
+
+    var commandText = "select table_name as TableName from INFORMATION_SCHEMA.Tables";
+
+    using(var connection = new SqlConnection(connString))
+    {
+        connection.Open();
+        using(var command = new SqlCommand(commandText,connection))
+        {
+            using(var reader = command.ExecuteReader())
+            {
+                while(reader.Read())
+                {
+                    yield return reader["TableName"] as string;
+                }
+            }
+        }
+    }
+}
+#>

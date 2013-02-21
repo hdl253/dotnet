@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Ajax Call Web API</title>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<div id="result"></div>
+<script type="text/javascript">
+var requestJson = JSON.stringify({ startId: 1, itemcount: 3 });
+$.ajax({
+    url: '/api/demo/sitelist',
+    data: requestJson,
+    type: "post",
+    dataType: "json",
+    contentType: "application/json; charset=utf8",
+    success: function (data) {
+        jQuery.each(data, function (i, val) {
+            $("#result").append(val.Title + '： ' + val.Uri +'<br/>');
+        });
+    }
+});
+</script>
+</body>
+</html>

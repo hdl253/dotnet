@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomAttribute", "CustomAttribute\CustomAttribute.csproj", "{C524B3A7-1BF9-475F-876D-47AB96D7D8A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitFlags", "BitFlags\BitFlags.csproj", "{EDAB9ABF-D054-4534-91E3-6917B41CC17D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C524B3A7-1BF9-475F-876D-47AB96D7D8A2}.Debug|x86.ActiveCfg = Debug|x86
+		{C524B3A7-1BF9-475F-876D-47AB96D7D8A2}.Debug|x86.Build.0 = Debug|x86
+		{C524B3A7-1BF9-475F-876D-47AB96D7D8A2}.Release|x86.ActiveCfg = Release|x86
+		{C524B3A7-1BF9-475F-876D-47AB96D7D8A2}.Release|x86.Build.0 = Release|x86
+		{EDAB9ABF-D054-4534-91E3-6917B41CC17D}.Debug|x86.ActiveCfg = Debug|x86
+		{EDAB9ABF-D054-4534-91E3-6917B41CC17D}.Debug|x86.Build.0 = Debug|x86
+		{EDAB9ABF-D054-4534-91E3-6917B41CC17D}.Release|x86.ActiveCfg = Release|x86
+		{EDAB9ABF-D054-4534-91E3-6917B41CC17D}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

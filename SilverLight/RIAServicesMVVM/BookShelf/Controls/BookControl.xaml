@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="BookShelf.Controls.BookControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:fx="clr-namespace:BookShelf"
+    mc:Ignorable="d"
+    d:DesignHeight="420" d:DesignWidth="356">
+    
+    <!--<UserControl.Resources>
+        <fx:ImageLoader x:Key="bookCoverLoader" UriFormat="/Content/Images/{0}.jpg" />
+    </UserControl.Resources>-->
+    <Grid x:Name="LayoutRoot" Background="White">
+        
+         <StackPanel >
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <Image x:Name="imgSmall" Source="{Binding Path=ASIN, Converter={StaticResource bookCoverLoader}}" HorizontalAlignment="Left" Height="100" Margin="5,5,0,0" VerticalAlignment="Top" Width="100"/>
+
+                <StackPanel  Margin="2,2,2,2" >
+          
+                    <TextBlock x:Name="txbTitle" HorizontalAlignment="Left" TextWrapping="Wrap" Width="225" Text="{Binding Title}" VerticalAlignment="Top" FontSize="13.333" FontWeight="Bold" d:LayoutOverrides="HorizontalAlignment" FontFamily="Segoe UI" />
+                    <TextBlock x:Name="txbAuthor" TextWrapping="Wrap" Text="{Binding Author}" VerticalAlignment="Top" Height="23" FontFamily="Segoe UI" FontSize="13.333"/>
+                    <TextBlock x:Name="txbASIN" TextWrapping="Wrap" Text="{Binding Path=ASIN, StringFormat=Amazon Item # \{0\}}" VerticalAlignment="Top" Height="23" FontFamily="Segoe UI" FontSize="13.333"/>
+                    <TextBlock x:Name="txbPublishedDate" TextWrapping="Wrap" Text="{Binding Path=PublishDate, StringFormat=Publish Date \{0:d\}}" VerticalAlignment="Top" Height="23" FontFamily="Segoe UI" FontSize="13.333"/>
+                </StackPanel>
+            </StackPanel>
+            <Button Content="Edit" Height="26" Name="btnEdit" Width="75" HorizontalAlignment="Right" />
+            <TextBlock x:Name="txbDescription" TextWrapping="Wrap" Text="{Binding Description}" FontFamily="Segoe UI" FontSize="13.333" Height="Auto" />
+        </StackPanel>
+      </Grid>
+</UserControl>

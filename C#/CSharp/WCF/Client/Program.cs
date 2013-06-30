@@ -10,6 +10,10 @@ namespace Client
     {
         static void Main(string[] args)
         {
+            using (ServiceReference1.CalculatorServiceClient proxy = new ServiceReference1.CalculatorServiceClient())
+            {
+                Console.WriteLine("x+y={0}", proxy.Add(1, 2));
+            }
         }
     }
 }
